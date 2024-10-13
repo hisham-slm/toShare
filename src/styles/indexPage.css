@@ -31,7 +31,7 @@
     background: linear-gradient(90deg, #618ebd, #d390dc);
     padding: 20px;
     border-radius: 20px;
-    color: rgb(250, 250, 250);
+    color: rgb(255, 235, 235);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     margin-top: 20px; /* Space between the button and the .moto div */
@@ -42,4 +42,5 @@
 
 .button:hover{
     background: linear-gradient(180deg, #d390dc,#629edd);
+    color: rgb(255, 255, 255);
 }

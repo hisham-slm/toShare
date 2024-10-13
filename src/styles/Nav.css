@@ -12,6 +12,7 @@
   }
   
   .left-side img {
+    border-radius: 8px;
     height: 40px; /* Adjust the height of the logo */
     width: auto; /* Maintain aspect ratio */
     margin-right: 10px; /* Space between the image and the title */
@@ -19,7 +20,7 @@
   
   .title {
     color: white;
-    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient text */
+    background: linear-gradient(90deg, #6d8bd6, #c2906a); /* Gradient text */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 1.5rem; 

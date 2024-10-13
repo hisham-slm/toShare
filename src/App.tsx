@@ -1,14 +1,19 @@
-// import './App.css'
-import IndexPage from './Index'
-import NavBar from './Nav'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+import LoginPage from "./pages/Login"
+import IndexPage from "./pages/IndexPage"
+import SignUpPage from "./pages/signup"
 
 function App() {
 
   return (
-    <>
-      <NavBar></NavBar>
-      <IndexPage></IndexPage>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={ <IndexPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/signup" element={<SignUpPage/>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

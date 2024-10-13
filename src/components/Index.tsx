@@ -1,5 +1,5 @@
-import './indexPage.css'
-function IndexPage() {
+import '../styles/indexPage.css'
+function IndexComponent() {
 
     return (
         <>
@@ -13,4 +13,4 @@ function IndexPage() {
     )
 }
 
-export default IndexPage
+export default IndexComponent
