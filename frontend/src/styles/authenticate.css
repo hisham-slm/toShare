@@ -1,0 +1,108 @@
+/* General Styles */
+.blur {
+    width: 45%;
+    border-radius: 30px;
+    box-shadow: #943194 5px 5px 15px;
+    background: linear-gradient(90deg, #3c65ce, #f045f0);
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+#header {
+    color: #ffd0fe;
+}
+
+#anchor-signup {
+    color: white;
+    padding: 5px;
+    transition: ease-in 0.2s;
+}
+
+#anchor-signup:hover {
+    transition: ease-in 1s;
+    border-bottom: 2px solid white;
+}
+
+.form {
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-field {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: #646cff;
+    font-weight: 500;
+    transition: ease-in 0.1s;
+}
+
+.input-field:focus {
+    background-color: #646cff;
+    color: white;
+    border: none;
+    transition: ease-in 0.1s;
+    text-decoration: none;
+    outline: none;
+}
+
+#submit-button {
+    background-color: #FFF;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    color: #1f50ce;
+    width: 80%;
+    border-radius: 10px;
+    font-weight: bolder;
+    transition: ease-in 0.1s;
+}
+
+.error{
+    color: rgb(96, 2, 2);
+}
+#submit-button:hover {
+    background-color: #1f50ce;
+    color: white;
+    transition: ease-in 0.1s;
+}
+
+/* Responsive Styles for Mobile Devices */
+@media (max-width: 768px) {
+    .blur {
+        width: 90%;  /* Adjust the container width for smaller screens */
+        height: auto; /* Let the height adjust automatically */
+    }
+
+    .input-field, #submit-button {
+        width: 90%; /* Make input and button take most of the screen width on mobile */
+    }
+
+    .form {
+        padding: 10px; /* Reduce padding to fit better on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .blur {
+        width: 100%; /* Full width for extra small devices */
+        height: auto;
+    }
+
+    .input-field, #submit-button {
+        width: 100%; /* Full width for input and buttons */
+    }
+
+    .form {
+        padding: 5px; /* Further reduce padding */
+    }
+}
