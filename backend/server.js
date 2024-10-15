@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const frontendAddress = process.env.FRONTEND
 
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 
 app.use(cors({
     origin : frontendAddress,

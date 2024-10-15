@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import '../styles/authenticate.css'
 
 function SignUpComponent() {
+    const navigate = useNavigate();
     const apiURL: any = import.meta.env.VITE_API_URL
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [username, setUsername] = useState<string>('');
-    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [responseMessage, setResponseMessage] = useState<string>('')
 
     const emailValidation = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -22,10 +25,9 @@ function SignUpComponent() {
 
         if (!emailValidation(email)) {
             console.log('email is not valid please check email');
-            setErrorMessage('Please enter a valid Email');
+            toast.error('Please enter a valid Email')
         } else if (password !== confirmPassword) {
-            console.log('Passwords dont matach')
-            setErrorMessage("Passwords doesn't match!")
+            toast.error("Passwords doesn't match!")
         }
         else {
             interface Data {
@@ -45,13 +47,20 @@ function SignUpComponent() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData)
                 })
-                setErrorMessage('')
-                if(response.ok){
-                    const dataRecieved:object = await response.json()
-                    console.log(dataRecieved)
-                } 
-            } catch(error) {
-            setErrorMessage(`${error}`)
+
+
+                if (response.ok) {
+                    const dataRecieved = await response.json()
+                    setResponseMessage(`${dataRecieved.message}`)
+                    toast.success(`${responseMessage}`)
+                    navigate('/login')
+                } else {
+                    const dataRecieved = await response.json()
+                    toast.error(`${dataRecieved.message}`)
+
+                }
+            } catch (error) {
+                toast.error(`${error}`)
             }
         }
     }
@@ -64,7 +73,6 @@ function SignUpComponent() {
                     <input className="input-field" placeholder="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                     <input className="input-field" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     <input className="input-field" placeholder="Confirm Password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <button id="submit-button" type="submit">Sign Up</button>
                 </form>
                 <a id="anchor-signup" href="/login">Already have an account?</a>

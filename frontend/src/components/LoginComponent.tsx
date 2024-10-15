@@ -1,24 +1,24 @@
 import React, { useState } from "react"
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import '../styles/authenticate.css'
 
 function LoginComponent() {
-
+    const navigate = useNavigate()
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [errorMessage, setErrorMessage] = useState<string>('')
-    const [loginError, setLoginError] = useState<string>('')
 
     const apiURL: string = import.meta.env.VITE_API_URL
 
-    interface Data{
-        username:string,
-        password:string
+    interface Data {
+        username: string,
+        password: string
     }
 
     const formData: Data = {
-        'username' : username,
-        "password" : password
+        'username': username,
+        "password": password
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,21 +26,24 @@ function LoginComponent() {
 
         try {
             const response = await fetch(`${apiURL}authentication/login`, {
-                method : 'POST',
+                method: 'POST',
                 headers: { "Content-Type": "application/json" },
+                credentials: 'include',
                 body: JSON.stringify(formData)
             })
 
-            if(response.ok){
-                const dataRecieved:object = await response.json()
-
-                console.log(dataRecieved)
-                setErrorMessage('')
-                setLoginError('')
+            if (response.ok) {
+                console.log(response)
+                toast.success('Login Successfull!')
+                navigate('/')
+            } else {
+                const dataRecieved = await response.json()
+                const message = dataRecieved.message
+                toast.error(`${message}`)
             }
 
         } catch (error) {
-            setLoginError(`${error}`)
+            toast.error(`${error}`)
         }
 
     }
@@ -52,10 +55,8 @@ function LoginComponent() {
                 <form className="form" onSubmit={handleSubmit}>
                     <input className="input-field" placeholder="Email" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                     <input className="input-field" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    {errorMessage && <p className="error">{errorMessage}</p>}
                     <button id="submit-button" type="submit">Login</button>
                 </form>
-                <p>{loginError}</p>
                 <a href="/signup" id="anchor-signup">Don't have an account yet?</a>
             </div>
         </div>

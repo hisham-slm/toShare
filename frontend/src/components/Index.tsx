@@ -1,4 +1,5 @@
 import '../styles/indexPage.css'
+
 function IndexComponent() {
 
     return (
