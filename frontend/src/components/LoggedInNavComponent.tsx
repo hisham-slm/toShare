@@ -1,23 +1,34 @@
 import '../styles/Nav.css'
 import { FaBars } from 'react-icons/fa'
 import { IoClose } from 'react-icons/io5'
+import Cookies from 'js-cookie'
 
 import mainLogo from '../assets/logo.png'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+
 
 function LoggedInNav() {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleMenu = ()=>{
+    const toggleMenu = () => {
         setIsOpen(!isOpen)
     }
 
-    function renderIcon(isOpen: boolean){
-        if(isOpen){
+    function renderIcon(isOpen: boolean) {
+        if (isOpen) {
             return <IoClose />
         } else {
             return <FaBars></FaBars>
         }
+    }
+
+    const RemoveToken = () => {
+        Cookies.remove('access_token');
+        toast.success("Logged Out")
+        navigate('/')
     }
 
     return (
@@ -31,13 +42,13 @@ function LoggedInNav() {
                     <a style={{ color: "#feb47b" }} href="/">Home</a>
                     <a href="">New Project</a>
                     <a href="/projects">My Projects</a>
-                    <a href="/logout">Logout</a>
+                    <a onClick={RemoveToken}>Logout</a>
                 </div>
                 <div className="icon" onClick={toggleMenu}>
                     {renderIcon(isOpen)}
                 </div>
             </div >
-            
+
         </>
     )
 }
