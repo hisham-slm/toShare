@@ -1,4 +1,4 @@
-import NavBarCompnent from "../components/Nav";
+import NavBarCompnent from "../components/IndexNavComponent";
 import IndexComponent from "../components/Index";
 
 function IndexPage() {

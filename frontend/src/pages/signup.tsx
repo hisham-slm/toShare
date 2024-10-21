@@ -1,5 +1,5 @@
 import SignUpComponent from "../components/SignUpComponent";
-import NavBarComponent from "../components/Nav";
+import NavBarComponent from "../components/IndexNavComponent";
 
 
 function SignUpPage() {

@@ -18,12 +18,14 @@ app.use(cors({
 }))
 
 const Authenticate = require('./authentication/authentication')
+const Project = require('./project/projects');
 
 app.get('/', (req, res) => {
     res.send('you are at the home page')
 })
 
 app.use('/authentication', Authenticate)
+app.use('/project', Project)
 
 mongoose.connect("mongodb://localhost/toshare")
     .then(() => console.log('Database connected'))

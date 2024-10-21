@@ -1,5 +1,5 @@
 import LoginComponent from "../components/LoginComponent";
-import NavBarComponent from "../components/Nav";
+import NavBarComponent from "../components/IndexNavComponent";
 
 
 function LoginPage() {

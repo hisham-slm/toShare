@@ -18,12 +18,12 @@ router.post('/login', async (req, res) => {
     try{
         const user = await User.findOne({ $or : [{username : username}, {email : username}]});
         if (!user){
-            return res.status(404).json({message : "Username or Email not found!"})
+            return res.status(404).json({message : "Username or Email not found!", isAuthenticated : false})
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password)
         if(!isPasswordValid){
-            return res.status(401).json({message : "Incorrect Password!"})
+            return res.status(401).json({message : "Incorrect Password!", isAuthenticated : false})
         }
 
         const accessToken = jwt.sign({username : user.username}, process.env.ACEESS_TOKEN_SECRET, {expiresIn:'10m'});
@@ -39,10 +39,10 @@ router.post('/login', async (req, res) => {
             }
         )
 
-        return res.status(200).json({message : 'User authenticated successfully!'})
+        return res.status(200).json({message : 'User authenticated successfully!', isAuthenticated : true})
 
     } catch (error) {
-        return res.status(500).json({message: "Internal Server Error", error : error})
+        return res.status(500).json({message: "Internal Server Error", error : error, isAuthenticated : false})
     }
 })
 

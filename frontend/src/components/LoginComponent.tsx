@@ -35,7 +35,7 @@ function LoginComponent() {
             if (response.ok) {
                 console.log(response)
                 toast.success('Login Successfull!')
-                navigate('/')
+                navigate('/projects')
             } else {
                 const dataRecieved = await response.json()
                 const message = dataRecieved.message
