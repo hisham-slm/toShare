@@ -9,7 +9,6 @@ async function authUser(req, res, next) {
     if (!token) {
         res.status(401).json({ isAuthenticated: false, message: 'No Token' })
     }
-    console.log(token)
 
     jwt.verify(token, process.env.ACEESS_TOKEN_SECRET, (error, username) => {
         if (error) {

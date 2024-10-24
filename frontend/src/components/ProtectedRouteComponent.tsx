@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 interface ProtectedRouteProps {
-    element: React.ComponentType;
+    element: React.ComponentType<{data : any}>;
     apiRoute: string;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, apiRoute: APIRoute }) => {
+    const [resultData, setResultData] = useState<any>(null)
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null); 
 
     async function fetchAPI() {
@@ -31,11 +32,13 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, apiRo
         fetchAPI().then((data) => {
             if (data && typeof data.isAuthenticated === "boolean") {
                 setIsAuthenticated(data.isAuthenticated);
+                setResultData(data)
             } else {
                 setIsAuthenticated(false); 
             }
         });
     }, [APIRoute]);
+    console.log(resultData)
 
     if (isAuthenticated === null) {
         return <div>Loading...</div>;
@@ -43,7 +46,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, apiRo
 
     return (
         <>
-            {isAuthenticated ? <Element /> : <Navigate to="/login" />}
+            {isAuthenticated ? (<Element data={resultData} />) : (<Navigate to="/login" />)}
         </>
     );
 };

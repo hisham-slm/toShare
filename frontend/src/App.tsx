@@ -20,7 +20,7 @@ function App() {
           <Route index element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/projects/*" element={<ProtectedRoute element={ ProjectPage} apiRoute={`${APIURL}project/project`} />} />
+          <Route path="/projects" element={<ProtectedRoute element={ ProjectPage } apiRoute={`${APIURL}project/`} />} />
           <Route path="*" element={<PageMissing />} />
         </Routes>
       </BrowserRouter>

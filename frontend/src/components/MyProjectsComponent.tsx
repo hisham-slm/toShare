@@ -1,4 +1,11 @@
-function MyProjectComponent() {
+interface ProjectComponentProps {
+    ownProject : [],
+    collabProject : []
+}
+
+const MyProjectComponent: React.FC<ProjectComponentProps> = ({ ownProject: OwnProject, collabProject : CollabProject}) => {
+    console.log(OwnProject, CollabProject)
+
 
     return (
         <h1>

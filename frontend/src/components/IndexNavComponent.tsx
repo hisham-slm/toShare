@@ -29,7 +29,6 @@ function NavBarComponent() {
                 </div>
                 <div className={isOpen ? 'right-side active' : 'right-side'}>
                     <a style={{ color: "#feb47b" }} href="/">Home</a>
-                    <a href="">New Project</a>
                     <a href="/login">Login</a>
                     <a href="/signup">Sign Up</a>
                 </div>
